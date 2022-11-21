@@ -11,14 +11,14 @@ public class Euro implements Currency {
     public Currency addedCurrency(float value, String currency) {
         FakeCantor fakeCantor = new FakeCantor();
         float v = fakeCantor.euroToRate(currency);
-        return new Euro(this.value + value*v);
+        return new Euro(this.value + value/v);
     }
 
     @Override
     public Currency subtractedCurrency(float value, String currency) {
         FakeCantor fakeCantor = new FakeCantor();
         float v = fakeCantor.euroToRate(currency);
-        float result = this.value - v*value;
+        float result = this.value - value/v;
         if (result > 0) {
             return new Euro(result);
         } else {
