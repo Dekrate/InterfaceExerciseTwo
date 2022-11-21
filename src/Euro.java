@@ -19,10 +19,15 @@ public class Euro implements Currency {
         FakeCantor fakeCantor = new FakeCantor();
         float v = fakeCantor.euroToRate(currency);
         float result = this.value - value/v;
-        if (result > 0) {
-            return new Euro(result);
-        } else {
-            throw new ArithmeticException("How dare you get in-debted?"){{System.out.println(getMessage());}};
+        try {
+            if (result > 0) {
+                return new Euro(result);
+            } else {
+                throw new ArithmeticException("How dare you get in-debted?"){{}};
+            }
+        } catch (ArithmeticException e) {
+            System.err.println(e.getMessage());
+            return this;
         }
     }
 
